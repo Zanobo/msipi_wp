@@ -54,3 +54,4 @@
 
 # ignore logs
 /wp-content/w3tc/log/*
+/error_log

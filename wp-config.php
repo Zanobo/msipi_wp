@@ -3,8 +3,8 @@
  * @package WordPress
  */
  
-define( 'WP_HOME', $_SERVER['SERVER_NAME']); //Apache sends by default, nginx needs declared
-define( 'WP_SITEURL', WP_HOME);
+define( 'WP_HOME', 'http://' . $_SERVER['SERVER_NAME'] ); //Apache sends by default, nginx needs declared
+define( 'WP_SITEURL', 'http://' . $_SERVER['SERVER_NAME'] );
 
 $wpAppEnv = "live"; //Both will need to declare
 
@@ -38,6 +38,7 @@ if (in_array ($wpAppEnv, array('dev', 'test') )) {
 
 } elseif (in_array ( $wpAppEnv, array('uat', 'staging', 'prod') )) {
 	define( 'WP_CACHE', true );
+	define ('WP_DEBUG', true );
 }
 
 //define('WP_MEMORY_LIMIT', '64M');

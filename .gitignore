@@ -51,6 +51,10 @@
 /wp-content/w3tc/pgcache/*
 /wp-content/w3tc/tmp/*
 /wp-content/cache
+/wp-content/advanced-cache.php
+/wp-content/db.php
+/wp-content/object-cache.php
+/wp-content/w3tc-config/
 
 # ignore logs
 /wp-content/w3tc/log/*

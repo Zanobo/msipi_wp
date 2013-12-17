@@ -6,7 +6,7 @@
 define( 'WP_HOME', 'http://' . $_SERVER['SERVER_NAME'] ); //Apache sends by default, nginx needs declared
 define( 'WP_SITEURL', 'http://' . $_SERVER['SERVER_NAME'] );
 
-$wpAppEnv = "live"; //Both will need to declare
+$wpAppEnv = "dev"; //Both will need to declare
 
 /* Give DB and file-storage access */
 define('DB_CHARSET', 'utf8');

@@ -106,7 +106,7 @@ function roots_theme_activation_options_render_page() { ?>
                 <option value="false"><?php echo _e('No', 'roots'); ?></option>
               </select>
               <br>
-              <small class="description"><?php printf(__('Create the Primary Navigation menu and set the location', 'roots')); ?></small>
+              <small class="description"><?php printf(__('Create the Primary & Footer Navigation menus and set their locations', 'roots')); ?></small>
             </fieldset>
           </td>
         </tr>
@@ -203,12 +203,20 @@ function roots_theme_activation_action() {
     $roots_nav_theme_mod = false;
 
     $primary_nav = wp_get_nav_menu_object('Primary Navigation');
+    $footer_nav = wp_get_nav_menu_object('Footer Navigation');
 
     if (!$primary_nav) {
       $primary_nav_id = wp_create_nav_menu('Primary Navigation', array('slug' => 'primary_navigation'));
       $roots_nav_theme_mod['primary_navigation'] = $primary_nav_id;
     } else {
       $roots_nav_theme_mod['primary_navigation'] = $primary_nav->term_id;
+    }
+
+    if (!$footer_nav) {
+      $footer_nav_id = wp_create_nav_menu('Footer Navigation', array('slug' => 'footer_navigation'));
+      $roots_nav_theme_mod['footer_navigation'] = $footer_nav_id;
+    } else {
+      $roots_nav_theme_mod['footer_navigation'] = $footer_nav->term_id;
     }
 
     if ($roots_nav_theme_mod) {

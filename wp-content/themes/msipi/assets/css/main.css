@@ -2,6 +2,9 @@
  *  Zach Risher, Zanobo Consulting 2013 
  *  zach@zanobo.com
  */
+html, body {
+  height: auto; }
+
 body#msipi {
   background-color: #762123; }
   body#msipi .container {

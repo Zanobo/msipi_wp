@@ -63,6 +63,10 @@ $break-ra-ty: 600px;
   }
 }
 
+html, body {
+  height: auto;
+}
+
 body#msipi {
   background-color: $red;
 

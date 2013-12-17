@@ -1,4 +1,7 @@
 <?php
+/** Enable W3 Total Cache */
+define('WP_CACHE', true); // Added by W3 Total Cache
+
 /**
  * @package WordPress
  */
@@ -34,11 +37,9 @@ if (in_array ($wpAppEnv, array('dev', 'test') )) {
 	define( 'WP_DEBUG', true ); //mode gives me too many notices from bad plugins, so we do it manually below
 	//ini_set( 'display_errors', 1 );
 	//error_reporting(E_ERROR | E_WARNING | E_PARSE);
-	define( 'WP_CACHE', false );
-
+	
 } elseif (in_array ( $wpAppEnv, array('uat', 'staging', 'prod') )) {
-	define( 'WP_CACHE', true );
-	define ('WP_DEBUG', true );
+		define ('WP_DEBUG', true );
 }
 
 //define('WP_MEMORY_LIMIT', '64M');

@@ -84,9 +84,15 @@ body#msipi {
   }
 
   h1,h2,h3,h4,h5,h6 {
-    color: $grey;
-    color: $blue;
     color: $red;
+    a {
+      color: $red;
+      //text-decoration: underline;
+
+    }
+    small {
+      color: $grey;
+    }
   }
 
   .brand-bar {
@@ -115,7 +121,7 @@ body#msipi {
     &.msipi-navbar-header {
       background-color: $blue-light;
       border-color: $blue-med;
-      margin-bottom: 15px;
+      margin-bottom: 5px;
 
       .navbar-header {
         button.navbar-toggle {
@@ -127,8 +133,6 @@ body#msipi {
           .icon-bar {
             background-color: $grey-med;
           }
-
-
         }
       }
 
@@ -142,8 +146,26 @@ body#msipi {
       }
       li.active a {
         background-color: $blue-med-3;
-
       }
+      li.dropdown {
+        a {
+          background-color: $blue-light;
+        }
+        ul.dropdown-menu {
+          background-color: $blue-light;
+          @include respond-to(ty+xs) {
+            display: block;
+            border: none;
+            -webkit-box-shadow: none;
+            box-shadow: none;
+
+          }
+        }
+        &:hover ul.dropdown-menu {
+          display: block;
+        }
+      }
+
     }
     &.msipi-navbar-footer {
       min-height: 36px;

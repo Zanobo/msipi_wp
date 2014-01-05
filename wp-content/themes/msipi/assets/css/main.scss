@@ -210,6 +210,7 @@ body#msipi {
   .content {
     padding-left: 15px;
     padding-right: 15px;
+
     .main {
       .page-header {
         margin-top: 0;
@@ -219,9 +220,17 @@ body#msipi {
         }
       }
       #em-booking .em-booking-form {
-        table.em-tickets td {
-          padding-left: 2px;
-          padding-right: 2px;
+        table.em-tickets {
+          tr {
+            border-bottom: 1px dotted $grey-med-2
+          }
+          td {
+            padding: 3px;
+            .ticket-desc {
+              font-style: italic;
+              color: $grey;
+            }
+          }
         }
         .em-booking-form-details {
           .input-checkbox {
@@ -235,7 +244,6 @@ body#msipi {
             }
         }
         }
-
         .em-booking-gateway-form {
           margin-bottom: 10px;
         }

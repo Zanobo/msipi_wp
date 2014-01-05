@@ -108,9 +108,13 @@ body#msipi {
       body#msipi .content .main .page-header h1 {
         margin-top: 0;
         margin-bottom: 0; }
+    body#msipi .content .main #em-booking .em-booking-form table.em-tickets tr {
+      border-bottom: 1px dotted #dde0e3; }
     body#msipi .content .main #em-booking .em-booking-form table.em-tickets td {
-      padding-left: 2px;
-      padding-right: 2px; }
+      padding: 3px; }
+      body#msipi .content .main #em-booking .em-booking-form table.em-tickets td .ticket-desc {
+        font-style: italic;
+        color: #666666; }
     body#msipi .content .main #em-booking .em-booking-form .em-booking-form-details .input-checkbox input {
       padding-left: 5px; }
     body#msipi .content .main #em-booking .em-booking-form .em-booking-form-details .input-checkbox label {

@@ -13,27 +13,27 @@
 
   <!-- favicons, check out github.com/audreyr/favicon-cheat-sheet & realfavicongenerator.net -->
   <!--[if IE]><link rel="shortcut icon" href="/favicon.ico"><![endif]-->
-  <link rel="apple-touch-icon-precomposed" sizes="152x152" href="/assets/img/favicons/apple-touch-icon-152x152.png">
-  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/assets/img/favicons/apple-touch-icon-144x144.png">
-  <link rel="apple-touch-icon-precomposed" sizes="120x120" href="/assets/img/favicons/apple-touch-icon-120x120.png">
-  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/assets/img/favicons/apple-touch-icon-114x114.png">
-  <link rel="apple-touch-icon-precomposed" sizes="76x76"   href="/assets/img/favicons/apple-touch-icon-76x76.png">
-  <link rel="apple-touch-icon-precomposed" sizes="72x72"   href="/assets/img/favicons/apple-touch-icon-72x72.png">
-  <link rel="apple-touch-icon-precomposed" sizes="60x60"   href="/assets/img/favicons/apple-touch-icon-60x60.png">
-  <link rel="apple-touch-icon-precomposed" sizes="57x57"   href="/assets/img/favicons/apple-touch-icon-57x57.png">
-  <link rel="icon" sizes="228x228" href="/assets/img/favicons/favicon-228x228.png">
-  <link rel="icon" sizes="196x196" href="/assets/img/favicons/favicon-196x196.png">
-  <link rel="icon" sizes="160x160" href="/assets/img/favicons/favicon-160x160.png">
-  <link rel="icon" sizes="128x128" href="/assets/img/favicons/favicon-128x128.png">
-  <link rel="icon" sizes="96x96"   href="/assets/img/favicons/favicon-96x96.png">
-  <link rel="icon" sizes="32x32"   href="/assets/img/favicons/favicon-32x32.png">
+  <link rel="apple-touch-icon-precomposed" sizes="152x152" href="/wp-content/themes/msipi/assets/img/favicons/apple-touch-icon-152x152.png">
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/wp-content/themes/msipi/assets/img/favicons/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon-precomposed" sizes="120x120" href="/wp-content/themes/msipi/assets/img/favicons/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/wp-content/themes/msipi/assets/img/favicons/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon-precomposed" sizes="76x76"   href="/wp-content/themes/msipi/assets/img/favicons/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon-precomposed" sizes="72x72"   href="/wp-content/themes/msipi/assets/img/favicons/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon-precomposed" sizes="60x60"   href="/wp-content/themes/msipi/assets/img/favicons/apple-touch-icon-60x60.png">
+  <link rel="apple-touch-icon-precomposed" sizes="57x57"   href="/wp-content/themes/msipi/assets/img/favicons/apple-touch-icon-57x57.png">
+  <link rel="icon" sizes="228x228" href="/wp-content/themes/msipi/assets/img/favicons/favicon-228x228.png">
+  <link rel="icon" sizes="196x196" href="/wp-content/themes/msipi/assets/img/favicons/favicon-196x196.png">
+  <link rel="icon" sizes="160x160" href="/wp-content/themes/msipi/assets/img/favicons/favicon-160x160.png">
+  <link rel="icon" sizes="128x128" href="/wp-content/themes/msipi/assets/img/favicons/favicon-128x128.png">
+  <link rel="icon" sizes="96x96"   href="/wp-content/themes/msipi/assets/img/favicons/favicon-96x96.png">
+  <link rel="icon" sizes="32x32"   href="/wp-content/themes/msipi/assets/img/favicons/favicon-32x32.png">
   <meta name="application-name" content="MSIPI" />
   <meta name="msapplication-TileColor" content="#2b5797">
-  <meta name="msapplication-TileImage" content="/assets/img/favicons/mstile-144x144.png">
-  <meta name="msapplication-square70x70logo" content="/assets/img/favicons/mstile-70x70.png" />
-  <meta name="msapplication-square150x150logo" content="/assets/img/favicons/mstile-150x150.png" />
-  <meta name="msapplication-wide310x150logo" content="/assets/img/favicons/mstile-310x150.png" />
-  <meta name="msapplication-square310x310logo" content="/assets/img/favicons/mstile-310x310.png" />
+  <meta name="msapplication-TileImage" content="/wp-content/themes/msipi/assets/img/favicons/mstile-144x144.png">
+  <meta name="msapplication-square70x70logo" content="/wp-content/themes/msipi/assets/img/favicons/mstile-70x70.png" />
+  <meta name="msapplication-square150x150logo" content="/wp-content/themes/msipi/assets/img/favicons/mstile-150x150.png" />
+  <meta name="msapplication-wide310x150logo" content="/wp-content/themes/msipi/assets/img/favicons/mstile-310x150.png" />
+  <meta name="msapplication-square310x310logo" content="/wp-content/themes/msipi/assets/img/favicons/mstile-310x310.png" />
 
   <!-- RSS -->
   <!--<link rel="alternate" type="application/rss+xml" title="<?php echo get_bloginfo('name'); ?> Feed" href="<?php echo home_url(); ?>/feed/">-->

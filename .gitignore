@@ -43,6 +43,7 @@
 
 # Ignore article images
 /wp-content/uploads/*
+/media
 
 #ignore caches
 /files_mf/*

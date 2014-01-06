@@ -44,5 +44,40 @@ function msipi_add_event_attachments( $attachments )
 
   $attachments->register( 'msipi_attachments', $args ); // unique instance name
 }
-
 add_action( 'attachments_register', 'msipi_add_event_attachments' );
+
+function msipi_add_em_attachments_placeholders($replace, $EM_Event, $result){
+    global $wp_query, $wp_rewrite;
+    switch( $result ){
+        case '#_PUB_ATTACHMENTS':
+            $replace = 'none';
+            if( count($EM_Event->styles) > 0 ){
+                $my_em_styles = (is_array(get_option('my_em_styles'))) ? get_option('my_em_styles'):array();
+                $styles = array();
+                foreach( $my_em_styles as $id => $name ){
+                    if(in_array($id, $EM_Event->styles)){
+                        $styles[] = $name;
+                    }
+                }
+                $replace = implode(', ', $styles);
+            }
+            break;
+        case '#_PRV_ATTACHMENTS':
+          $replace = '';
+          $EM_Booking = $EM_Event->get_bookings()->has_booking();
+          if( is_object($EM_Booking) ):
+            $attachments = new Attachments( 'msipi_attachments', $EM_Event->id );
+            if( $attachments->exist() ) :
+              $replace .= '<ul>';
+              while( $attachment = $attachments->get() ) :
+                $replace .= '<li><pre>'.print_r( $attachment ).'</pre></li>';
+              endwhile;
+              $replace .= '</ul>';
+            endif;
+          endif;
+
+          break;
+    }
+    return $replace;
+}
+add_filter('em_event_output_placeholder','msipi_add_em_attachments_placeholders',1,3);

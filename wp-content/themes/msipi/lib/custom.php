@@ -49,28 +49,31 @@ add_action( 'attachments_register', 'msipi_add_event_attachments' );
 function msipi_add_em_attachments_placeholders($replace, $EM_Event, $result){
     global $wp_query, $wp_rewrite;
     switch( $result ){
-        case '#_PUB_ATTACHMENTS':
-            $replace = 'none';
-            if( count($EM_Event->styles) > 0 ){
-                $my_em_styles = (is_array(get_option('my_em_styles'))) ? get_option('my_em_styles'):array();
-                $styles = array();
-                foreach( $my_em_styles as $id => $name ){
-                    if(in_array($id, $EM_Event->styles)){
-                        $styles[] = $name;
-                    }
-                }
-                $replace = implode(', ', $styles);
-            }
-            break;
-        case '#_PRV_ATTACHMENTS':
+       case '#_ATTACHPUB':
+          $replace = '';
+            $attachments = new Attachments( 'msipi_attachments', $EM_Event->post_id );
+            if( $attachments->exist() ) :
+              $replace .= '<ul>';
+              while( $attachments->get() && ($attachments->field('restricted') == 0)  ) :
+                $replace .= '<li>' .
+                        '<a href="'.$attachments->url().'">'. $attachments->field('title')
+			.'</a></li>';
+              endwhile;
+              $replace .= '</ul>';
+            endif;
+          endif;
+
+	case '#_ATTACHPRV':
           $replace = '';
           $EM_Booking = $EM_Event->get_bookings()->has_booking();
           if( is_object($EM_Booking) ):
-            $attachments = new Attachments( 'msipi_attachments', $EM_Event->id );
+            $attachments = new Attachments( 'msipi_attachments', $EM_Event->post_id );
             if( $attachments->exist() ) :
               $replace .= '<ul>';
-              while( $attachment = $attachments->get() ) :
-                $replace .= '<li><pre>'.print_r( $attachment ).'</pre></li>';
+              while( $attachments->get() && ( $attachments->field('restricted')== 1 )) :
+                $replace .= '<li>' . 
+			'<a href="'.$attachments->url().'">'. $attachments->field('title') 
+		.'</a></li>';
               endwhile;
               $replace .= '</ul>';
             endif;

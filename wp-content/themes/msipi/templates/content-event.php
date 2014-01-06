@@ -1,4 +1,13 @@
 <header class="entry-header">
+  <h1 class="entry-title">HERES A TGEST OMG<?php echo $EM_Event->output('#_EVENTNAME'); ?></h1>
+</header>
+<div class="entry-content">
+  <p><?php echo $EM_Event->output('#_EVENTNOTES'); ?></p>
+</div>
+~
+
+
+<header class="entry-header">
   <h1 class="entry-title"><?php echo $EM_Event->output('#_EVENTNAME'); ?>
     <small>
       <?php echo $EM_Event->output('#_EVENTTIMES'); ?> on <?php echo $EM_Event->output('#_EVENTDATES'); ?>
@@ -13,3 +22,5 @@
   <h3>Register</h3>
   <?php echo $EM_Event->output('#_BOOKINGFORM'); ?>
 </div>
+
+

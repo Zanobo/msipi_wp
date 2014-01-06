@@ -28,27 +28,6 @@
         </aside><!-- /.sidebar -->
       <?php endif; ?>
 
-      <?php
-        if ( !empty($EM_Event) && is_object($EM_Event) )
-		      $EM_Booking = $EM_Event->get_bookings()->has_booking();
-	      if( is_object($EM_Booking) && !get_option('dbem_bookings_double') ): //Double bookings not allowed
-	    ?>
-
-        <?php $attachments = new Attachments( 'msipi_attachments' ); /* pass the instance name */ ?>
-          <?php if( $attachments->exist() ) : ?>
-            <h3>Attachments</h3>
-            <ul>
-              <?php while( $attachment = $attachments->get() ) : ?>
-                <li>
-                  <pre><?php print_r( $attachment ); ?></pre>
-                </li>
-              <?php endwhile; ?>
-            </ul>
-        <?php endif; ?>
-
-      <?php endif; ?>
-
-
     </div><!-- /.content -->
   </div><!-- /.wrap -->
 

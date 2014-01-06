@@ -29,15 +29,11 @@
       <?php endif; ?>
 
       <?php
-      $EM_Booking = $EM_Event->get_bookings()->has_booking();
-      ?>
-      <?php if( is_object($EM_Booking) && !get_option('dbem_bookings_double') ): //Double bookings not allowed ?>
-      <p>
-        <?php echo get_option('dbem_bookings_form_msg_attending'); ?>
-        <a href="<?php echo em_get_my_bookings_url(); ?>"><?php echo get_option('dbem_bookings_form_msg_bookings_link'); ?></a>
-      </p>
-      <?php else : ?>
-        <p>No booking</p>
+	if ( !empty($EM_Event) && is_object($EM_Event) )
+		$EM_Booking = $EM_Event->get_bookings()->has_booking();
+	if( is_object($EM_Booking) && !get_option('dbem_bookings_double') ): //Double bookings not allowed 
+	?>
+      <p>Get yo files here homie. </p>
       <?php endif; ?>
 
 

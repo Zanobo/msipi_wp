@@ -55,10 +55,10 @@ function msipi_add_em_attachments_placeholders($replace, $EM_Event, $result){
           if( $attachments->exist() ) :
             $replace .= '<ul>';
             while( $attachments->get() ) :
-	      if $attachments->field('restricted') == 0 :
+	      if ($attachments->field('restricted') == 0) :
                 $replace .= '<li><a href="'.$attachments->url().'">'. $attachments->field('title')
 			.$attachments->field('restricted') . ($attachments->field('restricted') ==0 ? 'true' : 'false') .'</a></li>';
-              endif
+              endif;
   	    endwhile;
             $replace .= '</ul>';
           endif;

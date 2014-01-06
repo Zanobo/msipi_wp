@@ -8,8 +8,8 @@ define('WP_CACHE', true); // Added by W3 Total Cache
 
 define( 'ATTACHMENTS_DEFAULT_INSTANCE', false );
 
-define( 'WP_HOME', 'http://' . $_SERVER['SERVER_NAME'] ); //Apache sends by default, nginx needs declared
-define( 'WP_SITEURL', 'http://' . $_SERVER['SERVER_NAME'] );
+define( 'WP_HOME', 'https://' . $_SERVER['SERVER_NAME'] ); //Apache sends by default, nginx needs declared
+define( 'WP_SITEURL', 'https://' . $_SERVER['SERVER_NAME'] );
 
 $wpAppEnv = "live"; //Both will need to declare
 

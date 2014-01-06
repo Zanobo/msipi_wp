@@ -86,37 +86,33 @@ function msipi_add_em_attachments_placeholders($replace, $EM_Event, $result){
 
     break;
 
+    case '#_LFA':
+	//$replace = ( is_user_logged_in() ? '' : 'Please <a href="https://msipi.org/wp-login.php"
+	//	>log in</a> to view attendee-only files');
+      $replace = 'poo';
+    break;
 
 
     }
     return $replace;
 }
 add_filter('em_event_output_placeholder','msipi_add_em_attachments_placeholders',1,3);
-
-//function msipi_add_my_bookings_link_for_subscribers() {
-  // If the user does not have access to publish posts
-//  if(!current_user_can('publish_posts')) {
-//    $admin_bar->add_menu( array(
-//        'id'    => 'my-bookings',
-//        'title' => 'My Bookings',
-//        'href'  => 'https://msipi.org/events/my-bookings/',
-//        'meta'  => array(
-//            'title' => __('My Bookings'),
-//        ),
-//    ));
-//  }
-//}
-//add_action( 'admin_init', 'msipi_add_my_bookings_link_for_subscribers' );
-
-
-
-function toolbar_link_to_mypage( $wp_admin_bar ) {
-  $args = array(
-    'id'    => 'my_page',
-    'title' => 'My Page',
-    'href'  => 'http://mysite.com/my-page/',
-    'meta'  => array( 'class' => 'my-toolbar-page' )
-  );
-  $wp_admin_bar->add_node( $args );
+function msipi_add_login_notice($content){
+return $content ;//str_replace("%#_LFA%","black",$content);
 }
-add_action( 'admin_bar_menu', 'toolbar_link_to_mypage', 999 );
+//add_filter('the_content','msipi_add_login_notice')
+
+function msipi_add_my_bookings_link_for_subscribers($wp_admin_bar) {
+  // If the user does not have access to publish posts
+  if(!current_user_can('publish_posts')) {
+    $wp_admin_bar->add_menu( array(
+        'id'    => 'my_bookings',
+        'title' => 'My Bookings',
+        'href'  => 'https://msipi.org/events/my-bookings/',
+        'meta'  => array(
+            'title' => __('My Bookings'),
+        ),
+    ));
+  }
+}
+add_action( 'admin_bar_menu', 'msipi_add_my_bookings_link_for_subscribers', 999 );

@@ -57,8 +57,9 @@ function msipi_add_em_attachments_placeholders($replace, $EM_Event, $result){
       $replace .= '<ul>';
       while( $attachments->get() ) :
         if ($attachments->field('restricted') == 0) :
-          $replace .= '<li><a href="'.$attachments->url().'">'.
-                      $attachments->field('title').'</a></li>';
+          $replace .= '<li><a href="'.
+                      str_replace("%http://%", "https://", $attachments->url())
+                      .'">'. $attachments->field('title').'</a></li>';
         endif;
 	    endwhile;
           $replace .= '</ul>';
@@ -74,8 +75,9 @@ function msipi_add_em_attachments_placeholders($replace, $EM_Event, $result){
         $replace .= '<ul>';
         while( $attachments->get() ) :
           if ($attachments->field('restricted') == 1) :
-            $replace .= '<li><a href="'.$attachments->url().'">'.
-                      $attachments->field('title').'</a></li>';
+            $replace .= '<li><a href="'.
+                        str_replace("%http://%", "https://", $attachments->url())
+                        .'">'. $attachments->field('title').'</a></li>';
           endif;
         endwhile;
         $replace .= '</ul>';
@@ -90,3 +92,4 @@ function msipi_add_em_attachments_placeholders($replace, $EM_Event, $result){
     return $replace;
 }
 add_filter('em_event_output_placeholder','msipi_add_em_attachments_placeholders',1,3);
+

@@ -47,40 +47,45 @@ function msipi_add_event_attachments( $attachments )
 add_action( 'attachments_register', 'msipi_add_event_attachments' );
 
 function msipi_add_em_attachments_placeholders($replace, $EM_Event, $result){
-    global $wp_query, $wp_rewrite;
-    switch( $result ){
-       case '#_ATTACHPUB':
-	  $replace = '';
-          $attachments = new Attachments('msipi_attachments', $EM_Event->post_id);
-          if( $attachments->exist() ) :
-            $replace .= '<ul>';
-            while( $attachments->get() ) :
-	      if ($attachments->field('restricted') == 0) :
-                $replace .= '<li><a href="'.$attachments->url().'">'. $attachments->field('title')
-			.$attachments->field('restricted') . ($attachments->field('restricted') ==0 ? 'true' : 'false') .'</a></li>';
-              endif;
-  	    endwhile;
-            $replace .= '</ul>';
-          endif;
-          break;
+  global $wp_query, $wp_rewrite;
+  switch( $result ){
+
+  case '#_ATTACHPUB':
+   $replace = '';
+   $attachments = new Attachments('msipi_attachments', $EM_Event->post_id);
+   if( $attachments->exist() ) :
+      $replace .= '<ul>';
+      while( $attachments->get() ) :
+        if ($attachments->field('restricted') == 0) :
+          $replace .= '<li><a href="'.$attachments->url().'">'.
+                      $attachments->field('title').'</a></li>';
+        endif;
+	    endwhile;
+          $replace .= '</ul>';
+    endif;
+    break;
 
 	case '#_ATTACHPRV':
-          $replace = '';
-          $EM_Booking = $EM_Event->get_bookings()->has_booking();
-          if( is_object($EM_Booking) ):
-            $attachments = new Attachments( 'msipi_attachments', $EM_Event->post_id );
-            if( $attachments->exist() ) :
-              $replace .= '<ul>';
-              while( $attachments->get() && ( $attachments->field('restricted')== 1 )) :
-                $replace .= '<li>' . 
-			'<a href="'.$attachments->url().'">'. $attachments->field('title') 
-		.'</a></li>';
-              endwhile;
-              $replace .= '</ul>';
-            endif;
+    $replace = '';
+    $EM_Booking = $EM_Event->get_bookings()->has_booking();
+    if( is_object($EM_Booking) ): //user is logged in and attending this event
+      $attachments = new Attachments( 'msipi_attachments', $EM_Event->post_id );
+      if( $attachments->exist() ) :
+        $replace .= '<ul>';
+        while( $attachments->get() ) :
+          if ($attachments->field('restricted') == 1) :
+            $replace .= '<li><a href="'.$attachments->url().'">'.
+                      $attachments->field('title').'</a></li>';
           endif;
+        endwhile;
+        $replace .= '</ul>';
+      endif;
+    endif;
 
-          break;
+    break;
+
+
+
     }
     return $replace;
 }

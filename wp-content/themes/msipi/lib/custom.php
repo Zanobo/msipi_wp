@@ -102,6 +102,17 @@ return $content ;//str_replace("%#_LFA%","black",$content);
 }
 //add_filter('the_content','msipi_add_login_notice')
 
+function my_the_content_filter($content) {
+  // assuming you have created a page/post entitled 'debug'
+  if ($GLOBALS['post']->post_name == 'debug') {
+    return var_export($GLOBALS['post'], TRUE );
+  }
+  // otherwise returns the database content
+  return $content;
+}
+add_filter( 'the_content', 'my_the_content_filter' );
+
+
 function msipi_add_my_bookings_link_for_subscribers($wp_admin_bar) {
   // If the user does not have access to publish posts
   if(!current_user_can('publish_posts')) {

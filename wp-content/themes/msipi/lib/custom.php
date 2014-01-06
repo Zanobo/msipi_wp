@@ -50,15 +50,16 @@ function msipi_add_em_attachments_placeholders($replace, $EM_Event, $result){
     global $wp_query, $wp_rewrite;
     switch( $result ){
        case '#_ATTACHPUB':
-          $replace = '';
-          $attachments = new Attachments( 'msipi_attachments', $EM_Event->post_id );
-	  $attachments->search('0',array('fields' => array ('restricted')))
+	  $replace = '';
+          $attachments = new Attachments('msipi_attachments', $EM_Event->post_id);
           if( $attachments->exist() ) :
             $replace .= '<ul>';
-            while( $attachments->get()  ) :
-              $replace .= '<li><a href="'.$attachments->url().'">'. $attachments->field('title')
+            while( $attachments->get() ) :
+	      if $attachments->field('restricted') == 0 :
+                $replace .= '<li><a href="'.$attachments->url().'">'. $attachments->field('title')
 			.$attachments->field('restricted') . ($attachments->field('restricted') ==0 ? 'true' : 'false') .'</a></li>';
-              endwhile;
+              endif
+  	    endwhile;
             $replace .= '</ul>';
           endif;
           break;

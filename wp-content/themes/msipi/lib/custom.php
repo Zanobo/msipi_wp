@@ -93,3 +93,17 @@ function msipi_add_em_attachments_placeholders($replace, $EM_Event, $result){
 }
 add_filter('em_event_output_placeholder','msipi_add_em_attachments_placeholders',1,3);
 
+function msipi_add_my_bookings_link_for_subscribers() {
+  // If the user does not have access to publish posts
+  if(!current_user_can('publish_posts')) {
+    $admin_bar->add_menu( array(
+        'id'    => 'my-bookings',
+        'title' => 'My Bookings',
+        'href'  => 'https://msipi.org/events/my-bookings/',
+        'meta'  => array(
+            'title' => __('My Bookings'),
+        ),
+    ));
+  }
+}
+add_action( 'admin_init', 'msipi_add_my_bookings_link_for_subscribers' );

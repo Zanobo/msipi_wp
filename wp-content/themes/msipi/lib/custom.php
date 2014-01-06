@@ -69,7 +69,7 @@ function msipi_add_em_attachments_placeholders($replace, $EM_Event, $result){
 	case '#_ATTACHPRV':
     $replace = '';
     $EM_Booking = $EM_Event->get_bookings()->has_booking();
-    if( is_object($EM_Booking) ): //user is logged in and attending this event
+    if( is_object($EM_Booking) && $EM_Booking->is_reserved() ): //user is logged in and attending this event
       $attachments = new Attachments( 'msipi_attachments', $EM_Event->post_id );
       if( $attachments->exist() ) :
         $replace .= '<ul>';

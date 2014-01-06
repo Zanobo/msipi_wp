@@ -31,7 +31,7 @@ function msipi_add_event_attachments( $attachments )
         'label'     => __( 'Restrict Access to Approved Registrants?', 'msipi_attachments' ),       // label to display
         'meta'      => array(                               // field-specific meta as defined by field class
                         'allow_null'    => false,            // allow null value? (adds 'empty' <option>)
-                        'multiple'      => true,            // multiple <select>?
+                        'multiple'      => false,            // multiple <select>?
                         'options'       => array(           // the <option>s to use
                               '1'     => 'Yes',
                               '0'     => 'No',

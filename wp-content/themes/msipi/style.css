@@ -9,15 +9,3 @@ Author URI:         http://zanobo.com/
 
 /* Add overwrites here. The majority of the styles are generated
 through SASS from assets/css/main.scss */
-
-
-.em-booking-form-details input.input, .em-booking-form-details textarea {
-width: 350px;}
-.em-booking-form label {
- display: inline-block;
- width: 100px;
- }
-.em-booking-form label {
- display: block;
- float: left;
- }

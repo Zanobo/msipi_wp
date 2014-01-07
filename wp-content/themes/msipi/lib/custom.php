@@ -86,31 +86,22 @@ function msipi_add_em_attachments_placeholders($replace, $EM_Event, $result){
 
     break;
 
-    case '#_LFA':
-	//$replace = ( is_user_logged_in() ? '' : 'Please <a href="https://msipi.org/wp-login.php"
-	//	>log in</a> to view attendee-only files');
-      $replace = 'poo';
-    break;
-
-
     }
     return $replace;
 }
 add_filter('em_event_output_placeholder','msipi_add_em_attachments_placeholders',1,3);
-function msipi_add_login_notice($content){
-return $content ;//str_replace("%#_LFA%","black",$content);
-}
-//add_filter('the_content','msipi_add_login_notice')
+//return $content ;//str_replace("%#_LFA%","black",$content);
 
-function my_the_content_filter($content) {
-  // assuming you have created a page/post entitled 'debug'
-  if ($GLOBALS['post']->post_name == 'debug') {
-    return var_export($GLOBALS['post'], TRUE );
-  }
-  // otherwise returns the database content
-  return $content;
+function msipi_add_login_notice($content) {
+
+$replace = ( is_user_logged_in() ? '' : 'Attendees can view additional files after <a href="https://msipi.org/wp-login.php"
+              >logging in</a>.');
+
+return str_replace("#_ATTACHLOGINNOTE",$replace,$content);
+
 }
-add_filter( 'the_content', 'my_the_content_filter' );
+
+add_filter( 'the_content', 'msipi_add_login_notice' );
 
 
 function msipi_add_my_bookings_link_for_subscribers($wp_admin_bar) {

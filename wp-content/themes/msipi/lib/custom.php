@@ -11,9 +11,9 @@ function msipi_add_event_attachments( $attachments )
     // all post types to utilize (string|array)
     'post_type'     => array( 'event' ), // 'post', 'page',
     // allowed file type(s) (array) (image|video|text|audio|application)
-    'filetype'      => array('image', 'video', 'text', 'audio'), //null,
+    'filetype'      => null, //array('image', 'video', 'text', 'audio'),
     // include a note within the meta box (string)
-    'note'          => 'Manage Attachments',
+    'note'          => 'Manage event attachments and access restrictions here.',
     // text for 'Attach' button in meta box (string)
     'button_text'   => __( 'Attach Files', 'msipi_attachments' ),
     // text for modal 'Attach' button (string)

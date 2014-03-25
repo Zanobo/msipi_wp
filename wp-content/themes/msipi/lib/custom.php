@@ -25,10 +25,15 @@ function msipi_add_event_attachments( $attachments )
         'type'  => 'text',                           // registered field type
         'label' => __( 'Title', 'msipi_attachments' ),     // label to display
       ),
+    array(
+        'name'  => 'category',                          // unique field name
+        'type'  => 'text',                           // registered field type
+        'label' => __( 'Category', 'msipi_attachments' ),     // label to display
+      ),      
       array(
         'name'      => 'restricted',                            // unique field name
         'type'      => 'select',                            // registered field type
-        'label'     => __( 'Restrict Access to Approved Registrants?', 'msipi_attachments' ),       // label to display
+        'label'     => __( 'Restrict Access to Approved Registrants?', 'msipi_attachments' ), // label to display
         'meta'      => array(                               // field-specific meta as defined by field class
                         'allow_null'    => false,            // allow null value? (adds 'empty' <option>)
                         'multiple'      => false,            // multiple <select>?
@@ -48,25 +53,27 @@ add_action( 'attachments_register', 'msipi_add_event_attachments' );
 
 function msipi_add_em_attachments_placeholders($replace, $EM_Event, $result){
   global $wp_query, $wp_rewrite;
-  switch( $result ){
-
-  case '#_ATTACHPUB':
-   $replace = '';
-   $attachments = new Attachments('msipi_attachments', $EM_Event->post_id);
-   if( $attachments->exist() ) :
-      $replace .= '<ul>';
-      while( $attachments->get() ) :
-        if ($attachments->field('restricted') == 0) :
-          $replace .= '<li><a href="'.
-                      str_replace("%http://%", "https://", $attachments->url())
-                      .'">'. $attachments->field('title').'</a></li>';
-        endif;
-	    endwhile;
-          $replace .= '</ul>';
-    endif;
-    break;
-
-	case '#_ATTACHPRV':
+	
+  switch( $result ){	
+	//deprecated
+  	case '#_ATTACHPUB':
+	   $replace = '';
+	   $attachments = new Attachments('msipi_attachments', $EM_Event->post_id);
+	   if( $attachments->exist() ) :
+	      $replace .= '<ul>';
+	      while( $attachments->get() ) :
+	        if ($attachments->field('restricted') == 0) :
+	          $replace .= '<li><a href="'.
+	                      str_replace("%http://%", "https://", $attachments->url())
+	                      .'">'. $attachments->field('title').'</a></li>';
+	        endif;
+		    endwhile;
+	          $replace .= '</ul>';
+	    endif;
+	    break;
+			
+	//deprecated
+  	case '#_ATTACHPRV':
     $replace = '';
     $EM_Booking = $EM_Event->get_bookings()->has_booking();
     if( is_object($EM_Booking) && $EM_Booking->is_reserved() ): //user is logged in and attending this event
@@ -83,14 +90,68 @@ function msipi_add_em_attachments_placeholders($replace, $EM_Event, $result){
         $replace .= '</ul>';
       endif;
     endif;
+		break;
+	
+		case '#_ATTACHORGANIZED':
+			$replace = '';
+			$EM_Booking = $EM_Event->get_bookings()->has_booking();
+			$event_id = $EM_Event->post_id;
+			$attachments = new Attachments( 'msipi_attachments', $event_id );
+			
+	    // set up an array of attachments indexed by category name
+	    if ($attachments->exist()){   
+				$attachments_by_category = array();
+				
+				$serve_restricted =  (is_object($EM_Booking) && $EM_Booking->is_reserved()) ; //user is logged in and attending this event						
+	      while( $attachments->get() ) :
+					$category = strtolower( $attachments->field('category') );
+					
+					if ($serve_restricted OR $attachments->field('restricted') == 0) :								
+						if (empty($category)) :
+							$category = 'uncategorized';
+						endif;			
+							
+						if (!array_key_exists($category,$attachments_by_category)) :
+							$attachments_by_category[$category] = array();
+						endif;		
+								
+						$attachments_by_category[$category][] = array(
+								'url' => $attachments->url(),
+								'title' => $attachments->field('title')
+								);
+								
+					endif;														
+	      endwhile;				
+			}		
+			
+			//display HTML based on attachments by category array
+			$num_categories = count($attachments_by_category);
+			if ($num_categories >= 1) :	
+				foreach ($attachments_by_category as $category_name => $attachments ){
+					if ($num_categories == 1) { $category_name = 'all files';} //Don't use 'uncategorized' if nothing is categorized
+					$collection_id = 'files-' . $event_id . preg_replace("/[^a-z0-9]/", "", $category_name);
+					$replace .= '<a class="collapse-toggle collapsed" data-toggle="collapse" data-target="#'. $collection_id .'">'. 
+						ucwords($category_name).
+						'</a>';
+					
+	      	$replace .= '<ul id="'. $collection_id .'" class="collapse">';
+		      foreach ($attachments as $attachment) {
+		      	$url = str_replace("%http://%", "https://", $attachment['url']);
+	          $replace .= '<li><a href="'. $url .'">'. $attachment['title'].'</a></li>';					 
+	        }			
+	      	$replace .= '</ul>';		
 
-    break;
+				}
+      	$replace .= '</ul>';
 
-    }
-    return $replace;
+			endif;
+	
+			break;
+	}		
+				
+  return $replace;
 }
 add_filter('em_event_output_placeholder','msipi_add_em_attachments_placeholders',1,3);
-//return $content ;//str_replace("%#_LFA%","black",$content);
 
 function msipi_add_login_notice($content) {
 

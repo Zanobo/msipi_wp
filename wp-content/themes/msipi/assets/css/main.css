@@ -40,7 +40,8 @@ body#msipi {
       margin-left: -15px; }
   body#msipi .navbar {
     border-radius: 0; }
-    body#msipi .navbar li a {
+    body#msipi .navbar ra_wp_dev
+    li a {
       font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif; }
     body#msipi .navbar.msipi-navbar-header {
       background-color: #e0ebf5;
@@ -122,3 +123,14 @@ body#msipi {
       margin-right: 5px; }
     body#msipi .content .main #em-booking .em-booking-form .em-booking-gateway-form {
       margin-bottom: 10px; }
+  body#msipi a.collapse-toggle {
+    display: block; }
+    body#msipi a.collapse-toggle:before {
+      font-family: FontAwesome;
+      content: "\f07c\00a0"; }
+    body#msipi a.collapse-toggle.collapsed:before {
+      font-family: FontAwesome;
+      content: "\f07b\00a0"; }
+  body#msipi #em-wrapper table.events-table td {
+    padding-right: 12px;
+    padding-top: 12px; }

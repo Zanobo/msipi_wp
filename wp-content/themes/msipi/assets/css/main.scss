@@ -113,7 +113,7 @@ body#msipi {
   }
 
   .navbar {
-    border-radius: 0;
+    border-radius: 0;     ra_wp_dev
 
     li a {
       font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;
@@ -251,7 +251,23 @@ body#msipi {
     }
   }
 
+  a.collapse-toggle {
+    display: block;
 
+    &:before {
+      font-family: FontAwesome;
+      content: "\f07c\00a0";
+    }
+    &.collapsed:before {
+      font-family: FontAwesome;
+      content: "\f07b\00a0";
+    }
+  }
+
+  #em-wrapper table.events-table td {
+    padding-right: 12px;
+    padding-top: 12px;
+  }
 
 }
 
